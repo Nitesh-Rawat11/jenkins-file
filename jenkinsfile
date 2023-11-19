@@ -17,11 +17,6 @@ pipeline {
                 echo "Password: ${params.PASSWORD}"'''
             }
         }
-         stage('Calender') {
-            steps {
-              bat 'calender 2023'
-            }
-        }
         stage('Test') {
             steps {
                 echo 'SCM Test'
