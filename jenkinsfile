@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Test') {
+            steps {
+                echo 'SCM Test'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'SCM Build'
+            }
+        }
+        stage('Depoly on Dev') {
+            steps {
+                echo 'SCM Deploy On DEV ENV'
+            }
+        }
+        stage('Continue ?') {
+            input{
+                message "Should be contunue ?"
+                ok "Yes we should"
+            }
+            steps {
+                echo 'Deploy On PROD'
+            }
+        }
+        stage('Deploy on Prod') {
+            steps {
+                echo 'SCM Deploy On PROD ENV'
+            }
+        }
+    }
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+        failure
+        {
+            echo 'Failure!'
+        }
+       success
+       {
+           echo 'Success!'
+       }
+    }
+}
