@@ -1,7 +1,20 @@
 pipeline {
     agent any
-
+    environment
+   {
+    name="Persion" defaultValue="Nitesh Rawat" description="software engineer"
+   }
     stages {
+        stage('Common') {
+            steps {
+             bat 'name,date,BATCH-ID'
+            }
+        }
+         stage('Calender') {
+            steps {
+               bat 'cal 2012'
+            }
+        }
         stage('Test') {
             steps {
                 echo 'SCM Test'
