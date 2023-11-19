@@ -5,9 +5,11 @@ pipeline {
     name="Persion" defaultValue="Nitesh Rawat" description="software engineer"
    }
     stages {
-        stage('Common') {
+        stage('Run multiple command') {
             steps {
-             bat 'name,date,BATCH-ID'
+             bat '''
+             pwd
+             ls '''
             }
         }
          stage('Calender') {
