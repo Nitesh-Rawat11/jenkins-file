@@ -34,10 +34,10 @@ pipeline{
             echo "========always========"
         }
         success{
-            echo "========pipeline executed successfully ========"
+            slackSend channel: 'jenkins-notification', message: 'SCM Success'
         }
         failure{
-            echo "========pipeline execution failed========"
+          slackSend channel: 'jenkins-notification', message: 'SCM Failed'
         }
     }
 }
