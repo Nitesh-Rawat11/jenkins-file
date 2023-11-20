@@ -1,0 +1,43 @@
+pipeline{
+   agent any
+   tools {
+        maven 'Maven' 
+    }
+    stages{
+        stage("JUint Test"){
+            steps{
+                bat 'mvn test'
+                echo "========executing A========"
+            }
+        }
+        stage("Build Package"){
+            steps{
+                bat 'mvn package'
+                echo "========executing B========"
+            }
+        }
+        stage("Deploy on Test"){
+            steps{
+                deploy adapters: [tomcat9(credentialsId: '77147496-3979-4c68-9fb9-b80e5726238b', path: '', url: 'http://localhost:8081/manager/html')], contextPath: '/app', war: '**/*.war'
+                echo "========executing C========"
+            }
+        }
+        stage("Deploy On Prod"){
+            steps{
+                deploy adapters: [tomcat9(credentialsId: '77147496-3979-4c68-9fb9-b80e5726238b', path: '', url: 'http://localhost:8081/manager/html')], contextPath: '/app', war: '**/*.war'
+                echo "========executing D========"
+            }
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
