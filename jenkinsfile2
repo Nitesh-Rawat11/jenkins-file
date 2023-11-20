@@ -7,7 +7,7 @@ pipeline{
         stage("JUint Test"){
             steps{
                 bat 'mvn test'
-                echo "========executing A========"
+               slackSend channel: 'jenkins-notification', message: 'SCM Starting'
             }
         }
         stage("Build Package"){
