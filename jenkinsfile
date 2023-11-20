@@ -10,11 +10,11 @@ pipeline {
     stages {
         stage('Example') {
             steps {
-                echo "Hello %Person%"
-                echo "Biography %Biography%"
-                echo "Toggle %Toggle%"
-                echo "Choice %choices%"
-                echo "Password %Password%"
+                bat 'echo "Hello %Person%"'
+                bat ' echo "Biography %Biography%"'
+                bat ' echo "Toggle %Toggle%"'
+                bat ' echo "Choice %choices%"'
+                bat ' echo "Password %Password%"'
             }
         }
         stage('Test') {
